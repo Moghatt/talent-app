@@ -1,0 +1,14 @@
+.table {
+  margin-top: 0; /* Remove the top margin */
+  /* Add other custom styles as needed */
+}
+.moon{
+  transition: transform .9s ease;
+}
+.moon:hover{
+ 
+  cursor: pointer;
+  width: 20px;
+  transform: scale(1.2);
+ 
+}

@@ -1,0 +1,59 @@
+/* Navbar.css */
+.navbar {
+  background-color: #f8f6f6; /* Set the background color */
+  color: rgb(27, 27, 27); /* Set text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.navbar.dark{
+   background-color: #333; /* Set the background color */
+  color: white; /* Set text color */
+}
+
+.logo {
+  font-size: 24px;
+}
+.logo--talent{
+    color: rgb(27, 27, 27); /* Set text color */
+    cursor: pointer;
+}
+.logo--talent.dark {
+   color: white; /* Set text color */
+}
+.logo--talent.dark:hover {
+   color: white; /* Set text color */
+}
+.logo--talent:hover{
+   
+    font-weight: bold;
+     color: rgb(27, 27, 27); /* Set text color */
+    
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+.nav-links.dark {
+  list-style: none;
+  display: flex;
+  
+}
+.nav-links.dark li a {
+    color: white; /* Set text color */
+
+  
+}
+
+.nav-link {
+
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+/* Style the links */
+.nav-link:hover {
+  text-decoration: underline;
+}

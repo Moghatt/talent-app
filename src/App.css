@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(233, 230, 232, 0.9); /* Replace with your desired background color */
+  min-height: 100vh; /* Ensure that the body takes up the full viewport height */
+}
+body.dark{
+  background-color: rgba(40, 40, 40, 0.9);
+}
+
+
+
+
+.App {
+    /* background-color: rgba(233, 230, 232, 0.9); */
+    margin: 10px;
+    /* height: "100 %"; */
+}
+.App.dark {
+    background-color: rgba(40, 40, 40, 0.9);
+}
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}

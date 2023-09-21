@@ -1,0 +1,15 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   text-align: center;
+   flex-direction: column;
+}
+.text-button{
+  margin-top: 3rem;
+}
+
+
+  
+
+
