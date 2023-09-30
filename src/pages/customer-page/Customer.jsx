@@ -31,8 +31,6 @@ function Customer() {
     const titleName = "Customer";
 
     const apiUrl = process.env.REACT_APP_CUSTOMER_URL_API;
-    console.log(apiUrl)
-    console.log(data)
     const { data, isPending, error } = useAllData(
         `${apiUrl}/?PageNumber=${currentPage}&PageSize=${pageSize}`
     );

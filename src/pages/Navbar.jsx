@@ -89,6 +89,23 @@ export const Navbar = ({ handleDarkMode, showDarkClass }) => {
                         Sale
                     </NavLink>
                 </li>
+                <li className="nav-link">
+                    <NavLink
+                        to="/stat"
+                        style={({ isActive }) => {
+                            return {
+                                fontWeight: isActive ? "bold" : "",
+                                textDecoration: isActive ? "underline" : "",
+                                color:
+                                    showDarkClass === "dark"
+                                        ? "white"
+                                        : "black",
+                            };
+                        }}
+                        >
+                        Stat
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );

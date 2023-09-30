@@ -25,8 +25,6 @@ const initialState = {
     currentPage:1,
     totalPages:null,
     totalCount:null
-
-    
 };
 const AppContext = createContext();
 

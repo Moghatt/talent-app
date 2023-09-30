@@ -6,6 +6,7 @@ import Sale from "../pages/sale-page/Sale";
 import Store from "../pages/store-page/Store";
 import Landing from "../pages/landing-page/Landing";
 import NotFound from "../components/error/NotFound";
+import Stat from "../pages/stat/Stat";
 
 
 export const router = createBrowserRouter([
@@ -34,8 +35,12 @@ export const router = createBrowserRouter([
                 element: <Store />,
             },
             {
+                path: "stat",
+                element: <Stat />,
+            },
+            {
                 path: "*",
-                element: <NotFound/>,
+                element: <NotFound />,
             },
         ],
     },

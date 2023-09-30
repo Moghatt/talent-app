@@ -22,7 +22,6 @@ export const useAllData = (url) => {
                     type: "PAGINATION",
                     payload: pagination.totalPages,
                 });
-                console.log("AFTER DISPATCH");
                 if (res.status !== 200) {
                     throw new Error(
                         `Request failed with status: ${res.status}`
@@ -31,7 +30,6 @@ export const useAllData = (url) => {
                 setData(res.data);
                 setError(null);
             } catch (err) {
-                console.log(err.message);
                 if (err.name === "AbortError") {
                     console.log("The fetch was aborted");
                 } else {

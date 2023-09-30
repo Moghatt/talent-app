@@ -1,0 +1,13 @@
+ .stat-container {
+  display: flex;
+
+} 
+ 
+  .pie{
+ height:30rem !important;
+
+
+}
+.bar{
+height:30rem !important;
+}   

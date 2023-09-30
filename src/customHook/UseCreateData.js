@@ -11,7 +11,7 @@ export const useCreateData = (url, titleName) => {
 
         try {
             const res = await axios.post(url, data);
-            console.log(res.status);
+            console.log(res);
 
             if (res.status !== 201) {
                 throw new Error(`Request failed with status: ${res.status}`);
