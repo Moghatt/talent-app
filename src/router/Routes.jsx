@@ -7,6 +7,7 @@ import Store from "../pages/store-page/Store";
 import Landing from "../pages/landing-page/Landing";
 import NotFound from "../components/error/NotFound";
 import Stat from "../pages/stat/Stat";
+import ProtectedRoute from "../pages/protected-route/ProtectedRoute";
 
 
 export const router = createBrowserRouter([
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "stat",
-                element: <Stat />,
+                element: <ProtectedRoute/>,
             },
             {
                 path: "*",

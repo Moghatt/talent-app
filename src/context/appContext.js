@@ -24,7 +24,13 @@ const initialState = {
     pageSize:4,
     currentPage:1,
     totalPages:null,
-    totalCount:null
+    totalCount:null,
+    email: "",
+    password:"",
+    confirmPassword:"",
+    isLoginOpen:true,
+    isRegisterOpen:false,
+
 };
 const AppContext = createContext();
 

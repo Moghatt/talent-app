@@ -40,6 +40,23 @@ const reducer = (state, action) => {
             isDeleteModalOpen: false,
             Name: "",
             Address: "",
+            email: "",
+            password: "",
+        };
+    }
+
+    if (action.type === "SHOW_REGISTER_MODAL") {
+        return {
+            ...state,
+            isAddModalOpen: false,
+            isEditModalOpen: false,
+            isDeleteModalOpen: false,
+            Name: "",
+            Address: "",
+            email: "",
+            password: "",
+            isLoginOpen: false,
+            isRegisterOpen: true,
         };
     }
     if (action.type === "SELECT_ITEM") {
@@ -64,24 +81,21 @@ const reducer = (state, action) => {
     if (action.type === "PAGINATION") {
         return {
             ...state,
-            totalPages:action.payload,
-           
+            totalPages: action.payload,
         };
     }
     if (action.type === "HANDLE_PAGINATION") {
-      
         return {
             ...state,
             currentPage: action.payload,
         };
     }
-      if (action.type === "HANDLE_PAGE_NUMBER") {
-          return {
-              ...state,
-              currentPage:1,
-          };
-      }
-
+    if (action.type === "HANDLE_PAGE_NUMBER") {
+        return {
+            ...state,
+            currentPage: 1,
+        };
+    }
 
     throw new Error(`no such action :${action.type}`);
 };
