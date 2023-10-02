@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import React, { useReducer, useContext} from "react";
 import reducer from "./reducer";
+import Cookies from "js-cookie";
 
 const initialState = {
     isAddModalOpen: false,
@@ -16,21 +17,22 @@ const initialState = {
     Store: "",
     showDark: false,
     showDarkClass: "",
-    customerData:null,
-    storeData:null,
-    saleData:null,
-    productData:null,
-    orderBy:null,
-    pageSize:4,
-    currentPage:1,
-    totalPages:null,
-    totalCount:null,
+    customerData: null,
+    storeData: null,
+    saleData: null,
+    productData: null,
+    orderBy: null,
+    pageSize: 4,
+    currentPage: 1,
+    totalPages: null,
+    totalCount: null,
     email: "",
-    password:"",
-    confirmPassword:"",
-    isLoginOpen:true,
-    isRegisterOpen:false,
-
+    password: "",
+    confirmPassword: "",
+    isLoginOpen: true,
+    isRegisterOpen: false,
+    token: Cookies.get("token") || null,
+    isAuthenticated:false
 };
 const AppContext = createContext();
 

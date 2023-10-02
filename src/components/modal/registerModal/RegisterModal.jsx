@@ -4,9 +4,13 @@ import { Button, Modal, Form, Segment, Container } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import validator from "validator";
+
+
 
 function RegisterModal() {
-    const { email, password,confirmPassword, dispatch, isRegisterOpen } = useAppContext();
+    const { email, password, confirmPassword, dispatch, isRegisterOpen } =
+        useAppContext();
     const navigate = useNavigate();
     const handleInput = (e) => {
         dispatch({
@@ -15,14 +19,33 @@ function RegisterModal() {
         });
     };
 
-    const handleLogin = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
-        if (email.length >= 7 && password.length >= 4) {
-            const response = await axios.post("api/login", { email, password });
-            dispatch({ type: "HIDE_MODAL" });
+        if (validator.isEmail(email) && password.length >= 4 && password === confirmPassword) {
+            try {
+                const res = await axios.post(
+                    process.env.REACT_APP_REGISTER_API,
+                    {
+                        userName: email,
+                        password,
+                        confirmPassword
+                    }
+                );
 
+                if (res.status !== 200) {
+                    throw new Error(
+                        `Request failed with status: ${res.status}`
+                    );
+                }
+
+                toast.success(`Account Successfully Registered!`);
+            } catch (err) {
+                console.log(err);
+            }
+
+            dispatch({ type: "HIDE_MODAL" });
             setTimeout(() => window.location.reload(), 3000);
-        } else toast.error("Error Happen While Adding Please Try Again!");
+        } else toast.error("Invalid Credentials");
     };
 
     const handleClose = () => {
@@ -72,7 +95,7 @@ function RegisterModal() {
                     />
                 </Form.Field>
                 <Container textAlign="right">
-                    <Button positive type="submit" onClick={handleLogin}>
+                    <Button positive type="submit" onClick={handleRegister}>
                         Submit
                     </Button>
                     <Button secondary onClick={handleClose}>

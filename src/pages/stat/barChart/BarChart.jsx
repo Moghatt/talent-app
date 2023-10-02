@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useAppContext } from "../../../context/appContext";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -67,11 +68,12 @@ const labels = [
 function BarChart() {
     const [storeStatsData, setStoreStatsData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+     const { token } = useAppContext();
 
     useEffect(() => {
         // Axios GET request
         axios
-            .get(process.env.REACT_APP_BAR_CHART_URL_API)
+            .get(process.env.REACT_APP_BAR_CHART_URL_API, {headers: { Authorization: `Bearer ${token}` }})
             .then((response) => {
                 console.log(response.data);
                 setStoreStatsData(response.data);
@@ -81,7 +83,7 @@ function BarChart() {
                 console.error("Error fetching data:", error);
                 setIsLoading(false);
             });
-    }, []);
+    }, [token]);
 
     let data1 = []; // Define data1 here
 
@@ -104,7 +106,8 @@ function BarChart() {
 
             storeStatsData.forEach((item) => {
                 const dateParts = item.dateSold.split("/");
-                const month = Number(dateParts[0]); // Extract month as an integer
+                const month = Number(dateParts[1]); // Extract month as an integer
+                console.log(month)
 
                 function getMonthName(monthNumber) {
                     const monthNames = [

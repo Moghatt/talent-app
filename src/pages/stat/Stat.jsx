@@ -13,6 +13,7 @@ import {faker} from "@faker-js/faker";
 import axios from "axios";
 import BarChart from "./barChart/BarChart";
 import "./Stat.css"
+import { useAppContext } from "../../context/appContext";
 
 
 ChartJS.register(
@@ -45,11 +46,14 @@ function Stat() {
 
   const [pieData, setPieData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const {token} = useAppContext()
 
   useEffect(() => {
       // Axios GET request
       axios
-          .get(process.env.REACT_APP_PIE_CHART_URL_API)
+          .get(process.env.REACT_APP_PIE_CHART_URL_API, {
+              headers: { Authorization: `Bearer ${token}` },
+          })
           .then((response) => {
               setPieData(response.data);
               console.log(response.data);
@@ -59,7 +63,7 @@ function Stat() {
               console.error("Error fetching data:", error);
               setIsLoading(false);
           });
-  }, []);
+  }, [token]);
 
 
   if (pieData) {

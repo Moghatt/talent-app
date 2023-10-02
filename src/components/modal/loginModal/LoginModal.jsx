@@ -4,9 +4,11 @@ import { Button, Modal, Form, Segment, Container } from "semantic-ui-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import validator from "validator";
+import Cookies from "js-cookie";
 
 function LoginModal() {
-    const { email, password, dispatch, isLoginOpen } = useAppContext();
+    const { email, password, isLoginOpen, dispatch } = useAppContext();
     const navigate = useNavigate();
     const handleInput = (e) => {
         dispatch({
@@ -17,12 +19,35 @@ function LoginModal() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        if (email.length >= 7 && password.length >= 4) {
-            const response = await axios.post("api/login", { email, password });
-            dispatch({ type: "HIDE_MODAL" });
+        if (validator.isEmail(email) && password.length >= 4) {
+            try {
+                const res = await axios.post(
+                    process.env.REACT_APP_LOGIN_API,
+                    {
+                        userName: email,
+                        password,
+                    }
+                );
 
-            setTimeout(() => window.location.reload(), 3000);
-        } else toast.error("Error Happen While Adding Please Try Again!");
+                if (res.status !== 200) {
+                    throw new Error(
+                        `Request failed with status: ${res.status}`
+                    );
+                }
+                  const newToken = res.data;
+              
+                Cookies.set("token", newToken, {
+                    expires: 7,
+                    secure: true,
+                    sameSite: "None",
+                }); // Cookie expires in 7 days
+                  dispatch({ type: "HIDE_MODAL" });
+                  setTimeout(() => window.location.reload(), 1000);
+            } catch (err) {
+                console.log(err);
+            }
+
+        } else toast.error("Invalid Credentials");
     };
 
     const handleClose = () => {
@@ -70,7 +95,10 @@ function LoginModal() {
                 </Container>
             </Form>
             <p>
-                Don't have a account? <Link onClick={()=> dispatch({type:"SHOW_REGISTER_MODAL"})}>Signup</Link>
+                Don't have a account?{" "}
+                <Link onClick={() => dispatch({ type: "SHOW_REGISTER_MODAL" })}>
+                    Signup
+                </Link>
             </p>
         </Modal>
     );

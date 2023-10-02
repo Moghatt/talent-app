@@ -31,6 +31,12 @@ const reducer = (state, action) => {
             isDeleteModalOpen: true,
         };
     }
+        if (action.type === "SHOW_LOGIN_MODAL") {
+            return {
+                ...state,
+                isLoginOpen: true,
+            };
+        }
 
     if (action.type === "HIDE_MODAL") {
         return {
@@ -38,10 +44,13 @@ const reducer = (state, action) => {
             isAddModalOpen: false,
             isEditModalOpen: false,
             isDeleteModalOpen: false,
+            isLoginOpen: false,
+            isRegisterOpen: false,
             Name: "",
             Address: "",
             email: "",
             password: "",
+            confirmPassword: "",
         };
     }
 
@@ -55,6 +64,7 @@ const reducer = (state, action) => {
             Address: "",
             email: "",
             password: "",
+            confirmPassword:"",
             isLoginOpen: false,
             isRegisterOpen: true,
         };
@@ -95,6 +105,11 @@ const reducer = (state, action) => {
             ...state,
             currentPage: 1,
         };
+    }
+    if(action.type ==="HANDLE_AUTHENTICATION"){
+      return {
+        ...state, isAuthenticated:true
+      }
     }
 
     throw new Error(`no such action :${action.type}`);

@@ -5,9 +5,8 @@ import { useAppContext } from "../../context/appContext";
 import RegisterModal from "../../components/modal/registerModal/RegisterModal";
 
 function ProtectedRoute() {
-    const isAuthenticated = false;
-    const {isRegisterOpen} = useAppContext()
-    return <>{isAuthenticated ? <Stat /> : isRegisterOpen ? <RegisterModal/>: <LoginModal />}</>;
+    const { token, isRegisterOpen } = useAppContext();
+    return <>{token ? <Stat /> : isRegisterOpen ? <RegisterModal/>: <LoginModal />}</>;
 }
 
 export default ProtectedRoute;
