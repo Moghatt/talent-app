@@ -44,7 +44,7 @@ const reducer = (state, action) => {
             isAddModalOpen: false,
             isEditModalOpen: false,
             isDeleteModalOpen: false,
-            isLoginOpen: false,
+            // isLoginOpen: false,
             isRegisterOpen: false,
             Name: "",
             Address: "",
@@ -65,7 +65,7 @@ const reducer = (state, action) => {
             email: "",
             password: "",
             confirmPassword:"",
-            isLoginOpen: false,
+            // isLoginOpen: false,
             isRegisterOpen: true,
         };
     }
