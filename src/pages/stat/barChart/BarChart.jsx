@@ -33,7 +33,6 @@ export const options = {
             },
         },
         x: {
-           
             gridLines: {
                 display: false,
             },
@@ -68,12 +67,14 @@ const labels = [
 function BarChart() {
     const [storeStatsData, setStoreStatsData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-     const { token } = useAppContext();
+    const { token } = useAppContext();
 
     useEffect(() => {
         // Axios GET request
         axios
-            .get(process.env.REACT_APP_BAR_CHART_URL_API, {headers: { Authorization: `Bearer ${token}` }})
+            .get(process.env.REACT_APP_BAR_CHART_URL_API, {
+                headers: { Authorization: `Bearer ${token}` },
+            })
             .then((response) => {
                 console.log(response.data);
                 setStoreStatsData(response.data);
@@ -106,8 +107,8 @@ function BarChart() {
 
             storeStatsData.forEach((item) => {
                 const dateParts = item.dateSold.split("/");
-                const month = Number(dateParts[1]); // Extract month as an integer
-                console.log(month)
+                const month = Number(dateParts[0]); // Extract month as an integer
+                console.log(month);
 
                 function getMonthName(monthNumber) {
                     const monthNames = [
@@ -143,7 +144,7 @@ function BarChart() {
             data1.push(monthCounts[month]);
         }
     }
-console.log(data1)
+    console.log(data1);
     const data = {
         labels,
         datasets: [
@@ -154,8 +155,6 @@ console.log(data1)
             },
         ],
     };
-
-
 
     return data1.length > 0 && data ? (
         <Bar className="bar" options={options} data={data} />

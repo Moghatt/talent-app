@@ -54,6 +54,7 @@ function LoginModal() {
         navigate("/");
         dispatch({ type: "HIDE_MODAL" });
     };
+
     return (
         <Modal size="tiny" open={isLoginOpen} style={{ padding: "15px" }}>
             <Segment>
